@@ -1,0 +1,71 @@
+<div class="pagetitle">
+    <h1> Add Workers in Melka Rafu City </h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item">Worker</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+<!-- End Page Title -->
+<div class="container row " style="padding-top: 2%; padding-right:5%; padding-left:30px;">
+    <div class=" bg-info bg-opacity-10 border border-info border-start-0 rounded-end"
+        style="padding-top: 20px; padding-right:10%; padding-left:10%;">
+
+        <div class="row text-center" style="align-items: center;">
+            <h3 class="bg-primary p-1" style="--bs-bg-opacity: .2; padding-left: 40px; padding-top: 70px;">
+                Register New Worker</h3>
+        </div>
+
+        <div class="row  " style="padding-left: 30px; padding-right: 30px;">
+            <form action="/worker" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <!--- 1 name--->
+                <div class="mb-1 col-md-4 col-lg-2 col-xl-6 mx-auto">
+                    <label for="title" class="form-label" required>Name</label>
+                    <input type="text" class="form-control" id="title" name="name" placeholder="Enter name">
+                </div>
+                <!--- 2 email--->
+                <div class="mb-1 col-md-4 col-lg-2 col-xl-6 mx-auto ">
+                    <label for="title" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                </div>
+                <!--- 3 phone--->
+                <div class="mb-1 col-md-4 col-lg-2 col-xl-6 mx-auto">
+                    <label for="title" class="form-label ">Phone</label>
+                    <input type="tel" class="form-control " id="phone" name="phone" placeholder="Enter phone">
+                </div>
+
+                <!--- 4 Position --->
+                <div class="mb-1 col-md-4 col-lg-2 col-xl-6 mx-auto ">
+                    <label for="position" class="form-label">Position</label>
+                    <select class="form-select" id="position" name="position">
+                        <option value="Worker" selected>Worker</option>
+                        <option value="Driver">Driver</option>
+                        <option value="Security">Security</option>
+                        <option value="Cashier">Cashier</option>
+                        <option value="Director">Director</option>
+                        <option value="Director">Other</option>
+                    </select>
+                </div>
+
+                <!--- 5 salary--->
+                <div class="mb-1 col-md-4 col-lg-2 col-xl-6 mx-auto">
+                    <label for="title" class="form-label ">Salary</label>
+                    <input type="text" class="form-control " id="salary" name="salary" placeholder="Enter salary">
+                </div>
+
+                <!--- 6 Image --->
+                <div class="mb-1 col-md-4 col-lg-6 col-xl-6 mx-auto">
+                    <label for="image" class="form-label">Select Image</label>
+                    <input type="file" class="form-control" id="image" name="image">
+                </div>
+                <!--- 7 Action --->
+                <div class="mb-3 col-md-6 col-lg-2 col-xl-6 mx-auto" style="padding-top: 10px;">
+                    <button type="submit" class="btn btn-primary">Add </button>
+                    <a href="/worker" class="btn btn-warning">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

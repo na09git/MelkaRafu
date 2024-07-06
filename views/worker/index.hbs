@@ -1,0 +1,79 @@
+<div class="pagetitle">
+    <h1>Workers in Melka Rafu City</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item">Worker</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+
+<div class="row" style="padding: 20px; ">
+    {{!-- Workers --}}
+    <div class="col-3">
+        <h3 class="display-6 " style=" padding-top:35px; padding-bottom:20px; padding-left:30px;">Workers</h3>
+    </div>
+    {{!-- form --}}
+    <div class="col">
+        <form id="search-site" action='/worker/search/:query' method='get' class="mb-3"
+            style="padding-left: 100px; padding-right: 100px;">
+            <div class="input-group" style="padding-top: 30px;">
+                <span class="input-group-text"><i class="fas fa-search fa-lg"></i></span>
+                <div class="form-floating">
+                    <input id="search" type="search" name='query' class="form-control w-90"
+                        placeholder="Search by name">
+                    <label for="search">Search</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Search by name</button>
+            </div>
+        </form>
+    </div>
+
+    {{!-- body --}}
+    <div class="row" style="padding-bottom: 30px; padding-left: 30px; padding-right: 30px;">
+        {{#each worker as |row index| }}
+        <div class="col-12 col-md-4">
+            <div class="card mb-4">
+                <div class="card-img-top">
+                    <a href="/worker/edit/{{row._id}}" class="btn p-2 btn-float  text-success">
+                        <i class="fas fa-edit fa-lg mx-1"></i>
+                    </a>
+                </div>
+                <div class="card ">
+                    {{#if imageBase64}}
+                    <img src='data:{{contentType}};base64,{{imageBase64}}' width="auto" height="170"
+                        class="worker image">
+                    {{else}}
+                    <img src="images/no_image.png" width="auto" height="230" class="img-thumbnail">
+                    {{/if}}
+                </div>
+
+                <div class="card-body text-center">
+                    <p>{{name}}</p>
+                    <p>{{email}}</p>
+                    <p>
+                        <a href="tel: {{row.phone}}"> {{row.phone}}</a>
+                    </p>
+                    <p>{{position}}</p>
+                    <p>{{salary}}</p>
+
+                    <div class="chip gap-0 ">
+                        <img style="height: 35px; weight: 35px;" class="chip-img rounded"
+                            src="data:{{contentType}};base64,{{imageBase64}}" alt="{{row.image}}">
+                        <a style="text-decoration: none; background-color:#e9e0e0; border-radius:20px; padding-top:6px; padding-bottom:8px; padding-left:20px; padding-right:20px;"
+                            href="mailto: {{row.email}}" class="chip-link">{{row.email}}</a>
+                    </div>
+
+                </div>
+                <div class="card-footer text-center">
+                    <a href="/worker/{{row._id}}" class="btn btn-secondary">Read More</a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <p class="col-12 text-center">No Worker to display</p>
+        {{/each}}
+    </div>
+
+</div>

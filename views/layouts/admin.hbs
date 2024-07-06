@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Melka Rafu City - Dashboard </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/img/melka.png" rel="icon">
+  <link href="/img/melka.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Bootstrap Table -->
+  <link rel="stylesheet" href="  https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.0/css/buttons.bootstrap5.css">
+
+  <!-- Template Main CSS File -->
+  <link href="/css/style.css" rel="stylesheet">
+
+  {{!-- Bootstrap --}}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <!-- CKEditor Online Link -->
+  <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+  {{!-- font-awesome --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-...your-sha512-hash-here..." crossorigin="anonymous" />
+
+  <!-- Include jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- Include your custom JavaScript file -->
+  <script src="/js/reports.js"></script>
+
+
+</head>
+
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="/admin" class="logo d-flex align-items-center">
+        <img src="/img/melka.png" alt="">
+        <span class="d-none d-lg-block">Admin Page</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="/img/melka.png" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Melka Rafu City</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Melka Rafu City</h6>
+              <span>Manager</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/profile">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+              <a class="dropdown-item d-flex align-items-center" href="/">
+                <i class="bi bi-person"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+          </ul>
+          <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
+
+      </ul>
+    </nav>
+    <!-- End Icons Navigation -->
+
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="/admin">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <!-- End Dashboard Nav -->
+
+
+
+      <!--Start Bought Components Bought -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>News</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+          <li>
+            <a href="/news/create">
+              <i class="bi bi-circle"></i><span>+ Broadcast News </span>
+            </a>
+          </li>
+          <li>
+            <a href="/news">
+              <i class="bi bi-circle"></i><span>News Page </span>
+            </a>
+          </li>
+          <li>
+            <a href="/newspage">
+              <i class="bi bi-circle"></i><span>News Dashboard</span>
+            </a>
+          </li>
+
+        </ul>
+      </li>
+      <!-- End News Components Nav -->
+
+
+
+      <!-- Start project -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-bar-chart"></i><span>Projects</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/project/addproject">
+              <i class="bi bi-circle"></i><span>+ Add Project</span>
+            </a>
+          </li>
+          <li>
+            <a href="/project">
+              <i class="bi bi-circle"></i><span>Projects</span>
+            </a>
+          </li>
+          <li>
+            <a href="/projects">
+              <i class="bi bi-circle"></i><span>Projects Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- End project -->
+
+
+      <!-- Start My Investment -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>Investment</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/investment/add">
+              <i class="bi bi-circle"></i><span>+ Add investment </span>
+            </a>
+          </li>
+          <li>
+            <a href="/investment">
+              <i class="bi bi-circle"></i><span>Investments </span>
+            </a>
+          </li>
+          <li>
+            <a href="/investments">
+              <i class="bi bi-circle"></i><span>Investments Dashboard</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- End Icons Nav -->
+
+
+      <!-- Start Workers Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Workers</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/worker/addworker">
+              <i class="bi bi-circle"></i><span>+ Add Worker </span>
+            </a>
+          </li>
+          <li>
+            <a href="/worker">
+              <i class="bi bi-circle"></i><span>Workers </span>
+            </a>
+          </li>
+          <li>
+            <a href="/workers">
+              <i class="bi bi-circle"></i><span>Workers List</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- End Tables Nav -->
+
+
+
+      <li class="nav-heading">Pages</li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/profile">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+      <!-- End Profile Page Nav -->
+
+
+
+
+    </ul>
+
+  </aside>
+  <!-- End Sidebar-->
+
+
+  <!-- Start #main -->
+  <main id="main">
+
+
+    {{{body}}}
+
+
+  </main>
+  <!-- End #main -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Melka Rafu City</span></strong>. All Rights Reserved!
+    </div>
+    <div class="credits">
+      Powered by <a href="https://niletech.co/">Nile Technology Solution </a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+  {{!-- bootstrap --}}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.umd.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/js/main.js"></script>
+
+
+
+  <!-- CKEditor Online Initialization -->
+  <script>
+    CKEDITOR.replace('body', {
+      // Add any other CKEditor configurations as needed
+      plugins: 'wysiwygarea, toolbar,basicstyles,link'
+    });
+  </script>
+
+
+  {{!-- new --}}
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.0/js/dataTables.buttons.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.bootstrap5.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.print.min.js"></script>
+
+  <script>
+
+
+    new DataTable('#data_news', {
+      layout: {
+        topStart: {
+          buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+      },
+    });
+
+
+
+
+
+    new DataTable('#data_project', {
+      layout: {
+        topStart: {
+          buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        }
+      },
+    });
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<main id="main">
+
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" style="background-image: url(img/page-title-bg.jpg);">
+        <div class="container position-relative">
+            <h1>News</h1>
+            <nav class="breadcrumbs">
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="current">News</li>
+                </ol>
+                <p>You can get ew News about our company Here !.</p>
+
+            </nav>
+        </div>
+    </div><!-- End Page Title -->
+
+
+
+    <!-- ====== Blog Section ====== -->
+    <section id="blog" class="blog">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row gy-4 posts-list">
+
+                {{#each news as |row index| }}
+                <div class="col-xl-12 col-md-6" style="padding-top: 50px;">
+                    <article>
+                        <div class="text-center" style="padding-bottom: 30px;">
+                            News Title : <p class="post-category">{{title}}</p>
+                        </div>
+
+                        <div class="container" style="height: auto;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-3" style="border: 0;">
+                                        {{#if imageBase64}}
+                                        <img src='data:{{contentType}};base64,{{imageBase64}}'
+                                            class="news-image img-fluid" style="min-height: 200px;">
+                                        {{else}}
+                                        <img src="images/no_image.png" class="img-thumbnail img-fluid"
+                                            style="min-height: 200px;">
+                                        {{/if}}
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card-body title">
+                                        <a href="/news/{{_id}}">
+                                            <p class="card-text">{{stripTags (truncate row.body 500)}}</p>
+                                        </a>
+                                    </div>
+
+                                    <div class="card-footer text-center" style="padding-top: 100px;">
+                                        <span>{{formatDate news.createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <div class="card-footer text-center">
+                                <a href="/news/{{_id}}" class="btn btn-secondary">Read More</a>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+                {{else}}
+                <p class="col-12 text-center">No News to display</p>
+                {{/each}}
+                <!-- End post list item -->
+
+            </div>
+
+            <!-- End blog posts list -->
+
+        </div>
+    </section><!-- End Blog Section -->
+
+</main>
+<!-- End #main -->
