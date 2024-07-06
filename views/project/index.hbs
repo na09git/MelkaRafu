@@ -1,11 +1,11 @@
 <div>
-    <h3 style=" padding-top:25px; padding-bottom:20px; padding-left:230px;">Your project Lists</h3>
-    <p style=" padding-top:5px; padding-bottom:20px; padding-left:30px;">You can get Your projects lists
+    <h3 style=" padding-top:25px; padding-bottom:20px; padding-left:230px;">Your Projects Lists</h3>
+    <p style=" padding-top:5px; padding-bottom:20px; padding-left:30px;">You can get Your Projectss lists
         here.</p>
 </div>
 <div class="row" style="padding: 5px; ">
     <div class="col">
-        <form id="search-site" action='/project/search/:query' method='get' class="mb-4"
+        <form id="search-site" action='/Projects/search/:query' method='get' class="mb-4"
             style="padding-left: 100px; padding-right: 100px;">
             <div class="input-group" style="padding-top: 5px;">
                 <span class="input-group-text"><i class="fas fa-search fa-lg"></i></span>
@@ -19,11 +19,11 @@
     </div>
 
     <div class="row" style="padding-bottom: 30px; padding-left: 30px; padding-right: 30px;">
-        {{#each project as |row index| }}
+        {{#each Projects as |row index| }}
         <div class="col-12 col-md-4">
             <div class="card mb-4">
                 <div class="card-img-top">
-                    <a href="/project/edit/{{row._id}}" class="btn p-2 btn-float  text-success">
+                    <a href="/Projects/edit/{{row._id}}" class="btn p-2 btn-float  text-success">
                         <i class="fas fa-edit fa-lg mx-1"></i>
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                 <div class="card ">
                     {{#if imageBase64}}
                     <img src='data:{{contentType}};base64,{{imageBase64}}' width="auto" height="200"
-                        class="project image">
+                        class="Projects image">
                     {{else}}
                     <img src="images/no_image.png" width="auto" height="200" class="img-thumbnail">
                     {{/if}}
@@ -39,7 +39,7 @@
 
                 <div class="card-body text-center">
                     {{!-- 1 title --}}
-                    <a href="/project/{{row._id}}">
+                    <a href="/Projects/{{row._id}}">
                         <p>{{title}}</p>
                     </a>
                     {{!-- 2 --}}
@@ -47,17 +47,17 @@
                         <p>{{stripTags (truncate body 40)}}</p>
                     </div>
                     {{!-- 3 category --}}
-                    <a href="/project/{{row._id}}">
+                    <a href="/Projects/{{row._id}}">
                         <p>{{category}}</p>
                     </a>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/project/{{row._id}}" class="btn btn-secondary">Read More</a>
+                    <a href="/Projects/{{row._id}}" class="btn btn-secondary">Read More</a>
                 </div>
             </div>
         </div>
         {{else}}
-        <p class="col-12 text-center">No projecter Information to display!</p>
+        <p class="col-12 text-center">No Projectser Information to display!</p>
         {{/each}}
     </div>
 </div>

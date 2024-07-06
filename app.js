@@ -20,7 +20,7 @@ const { uuid } = require('uuidv4');
 const User = require('./models/User')
 
 const News = require('./models/News')
-const Project = require('./models/Project')
+const Projects = require('./models/Projects')
 const Investment = require('./models/Investment')
 
 const Worker = require('./models/Worker')
@@ -132,7 +132,7 @@ app.use('/privacy', require('./routes/privacy'));
 app.use('/terms', require('./routes/terms'));
 app.use('/worker', require('./routes/worker'));
 app.use('/profile', require('./routes/profile'));
-app.use('/project', require('./routes/project'));
+app.use('/Projects', require('./routes/Projects'));
 app.use('/investment', require('./routes/investment'));
 app.use('/about', require('./routes/about'));
 

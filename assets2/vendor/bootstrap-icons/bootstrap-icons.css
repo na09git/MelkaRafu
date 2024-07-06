@@ -1468,8 +1468,8 @@ url("./fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("wof
 .bi-pc::before { content: "\f6a8"; }
 .bi-playstation::before { content: "\f6a9"; }
 .bi-plus-slash-minus::before { content: "\f6aa"; }
-.bi-projector-fill::before { content: "\f6ab"; }
-.bi-projector::before { content: "\f6ac"; }
+.bi-Projectsor-fill::before { content: "\f6ab"; }
+.bi-Projectsor::before { content: "\f6ac"; }
 .bi-qr-code-scan::before { content: "\f6ad"; }
 .bi-qr-code::before { content: "\f6ae"; }
 .bi-quora::before { content: "\f6af"; }

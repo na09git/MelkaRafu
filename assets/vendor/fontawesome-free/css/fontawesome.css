@@ -5150,10 +5150,10 @@ readers do not read off random characters that represent icons */
 .fa-jet-fighter-up::before {
   content: "\e518"; }
 
-.fa-diagram-project::before {
+.fa-diagram-Projects::before {
   content: "\f542"; }
 
-.fa-project-diagram::before {
+.fa-Projects-diagram::before {
   content: "\f542"; }
 
 .fa-copy::before {

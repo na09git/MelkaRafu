@@ -1,8 +1,8 @@
 # Changelog
-All notable changes to this project will be documented in this file.
+All notable changes to this Projects will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this Projects adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
@@ -561,7 +561,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Custom elements added to otherwise blank lines were removed during serialization. #TINY-4784
 - The editor's autocompleter was not triggered at the start of nested list items. #TINY-8759
 - Some function types in the TreeWalker API missed that it could return `undefined`. #TINY-8592
-- Nuget packages for .NET and .NET Core are now configured to copy TinyMCE into `/wwwroot/lib/` when TinyMCE is installed into a project. #TINY-8611
+- Nuget packages for .NET and .NET Core are now configured to copy TinyMCE into `/wwwroot/lib/` when TinyMCE is installed into a Projects. #TINY-8611
 
 ## 6.0.3 - 2022-05-25
 

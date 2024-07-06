@@ -20,16 +20,17 @@
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('echarts')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'echarts'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.bmap = {}, global.echarts));
-}(this, (function (exports, echarts) { 'use strict';
+    typeof define === 'function' && define.amd ? define(['exports', 'echarts'], factory) :
+      (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.bmap = {}, global.echarts));
+}(this, (function (exports, echarts) {
+  'use strict';
 
   function BMapCoordSys(bmap, api) {
     this._bmap = bmap;
     this.dimensions = ['lng', 'lat'];
     this._mapOffset = [0, 0];
     this._api = api;
-    this._projection = new BMap.MercatorProjection();
+    this._Projectsion = new BMap.MercatorProjectsion();
   }
 
   BMapCoordSys.prototype.type = 'bmap';
@@ -40,7 +41,7 @@
   };
 
   BMapCoordSys.prototype.setCenter = function (center) {
-    this._center = this._projection.lngLatToPoint(new BMap.Point(center[0], center[1]));
+    this._center = this._Projectsion.lngLatToPoint(new BMap.Point(center[0], center[1]));
   };
 
   BMapCoordSys.prototype.setMapOffset = function (mapOffset) {
@@ -52,8 +53,8 @@
   };
 
   BMapCoordSys.prototype.dataToPoint = function (data) {
-    var point = new BMap.Point(data[0], data[1]); // TODO mercator projection is toooooooo slow
-    // let mercatorPoint = this._projection.lngLatToPoint(point);
+    var point = new BMap.Point(data[0], data[1]); // TODO mercator Projectsion is toooooooo slow
+    // let mercatorPoint = this._Projectsion.lngLatToPoint(point);
     // let width = this._api.getZr().getWidth();
     // let height = this._api.getZr().getHeight();
     // let divider = Math.pow(2, 18 - 10);
@@ -153,7 +154,7 @@
      */
 
 
-    Overlay.prototype.draw = function () {};
+    Overlay.prototype.draw = function () { };
 
     return Overlay;
   }
