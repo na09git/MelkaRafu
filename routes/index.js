@@ -7,7 +7,7 @@ const User = require('../models/User')
 const News = require('../models/News')
 
 const Worker = require('../models/Worker')
-const Projects = require('../models/Projects')
+const Project = require('../models/Project')
 const Investment = require('../models/Investment')
 
 
@@ -143,12 +143,12 @@ router.get('/investments', ensureAuth, ensureAdmin, async (req, res) => {
   }
 })
 
-// @desc    Projectss
-// @route   GET /Projectss
-router.get('/Projectss', ensureAuth, async (req, res) => {
+// @desc    Projects
+// @route   GET /Projects
+router.get('/Projects', ensureAuth, async (req, res) => {
   try {
     const Projects = await Projects.find({ user: req.user.id }).lean()
-    res.render('Projectss', {
+    res.render('Projects', {
       name: req.user.firstName,
       image: req.user.image,
       Projects,

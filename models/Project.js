@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const ProjectsSchema = new mongoose.Schema({
+const ProjectSchema = new mongoose.Schema({
 
 
     imageBase64: {
@@ -37,4 +37,4 @@ const ProjectsSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('Projects', ProjectsSchema)
+module.exports = mongoose.model('Project', ProjectSchema)

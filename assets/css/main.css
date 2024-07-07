@@ -1322,16 +1322,16 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Projectss Section
+# Projects Section
 --------------------------------------------------------------*/
-.Projectss .portfolio-filters {
+.Projects .portfolio-filters {
   padding: 0;
   margin: 0 auto 20px auto;
   list-style: none;
   text-align: center;
 }
 
-.Projectss .portfolio-filters li {
+.Projects .portfolio-filters li {
   cursor: pointer;
   display: inline-block;
   padding: 0;
@@ -1343,36 +1343,36 @@ section,
   transition: all 0.3s ease-in-out;
 }
 
-.Projectss .portfolio-filters li:hover,
-.Projectss .portfolio-filters li.filter-active {
+.Projects .portfolio-filters li:hover,
+.Projects .portfolio-filters li.filter-active {
   color: var(--accent-color);
 }
 
-.Projectss .portfolio-filters li:first-child {
+.Projects .portfolio-filters li:first-child {
   margin-left: 0;
 }
 
-.Projectss .portfolio-filters li:last-child {
+.Projects .portfolio-filters li:last-child {
   margin-right: 0;
 }
 
 @media (max-width: 575px) {
-  .Projectss .portfolio-filters li {
+  .Projects .portfolio-filters li {
     font-size: 14px;
     margin: 0 5px;
   }
 }
 
-.Projectss .portfolio-content {
+.Projects .portfolio-content {
   position: relative;
   overflow: hidden;
 }
 
-.Projectss .portfolio-content img {
+.Projects .portfolio-content img {
   transition: 0.3s;
 }
 
-.Projectss .portfolio-content .portfolio-info {
+.Projects .portfolio-content .portfolio-info {
   opacity: 0;
   position: absolute;
   inset: 0;
@@ -1382,7 +1382,7 @@ section,
   padding: 15px;
 }
 
-.Projectss .portfolio-content .portfolio-info h4 {
+.Projects .portfolio-content .portfolio-info h4 {
   font-size: 14px;
   padding: 5px 10px;
   font-weight: 400;
@@ -1391,7 +1391,7 @@ section,
   background-color: var(--accent-color);
 }
 
-.Projectss .portfolio-content .portfolio-info p {
+.Projects .portfolio-content .portfolio-info p {
   position: absolute;
   bottom: 10px;
   text-align: center;
@@ -1403,8 +1403,8 @@ section,
   color: rgba(255, 255, 255, 0.8);
 }
 
-.Projectss .portfolio-content .portfolio-info .preview-link,
-.Projectss .portfolio-content .portfolio-info .details-link {
+.Projects .portfolio-content .portfolio-info .preview-link,
+.Projects .portfolio-content .portfolio-info .details-link {
   position: absolute;
   left: calc(50% - 40px);
   font-size: 26px;
@@ -1414,22 +1414,22 @@ section,
   line-height: 1.2;
 }
 
-.Projectss .portfolio-content .portfolio-info .preview-link:hover,
-.Projectss .portfolio-content .portfolio-info .details-link:hover {
+.Projects .portfolio-content .portfolio-info .preview-link:hover,
+.Projects .portfolio-content .portfolio-info .details-link:hover {
   color: var(--accent-color);
 }
 
-.Projectss .portfolio-content .portfolio-info .details-link {
+.Projects .portfolio-content .portfolio-info .details-link {
   left: 50%;
   font-size: 34px;
   line-height: 0;
 }
 
-.Projectss .portfolio-content:hover .portfolio-info {
+.Projects .portfolio-content:hover .portfolio-info {
   opacity: 1;
 }
 
-.Projectss .portfolio-content:hover img {
+.Projects .portfolio-content:hover img {
   transform: scale(1.1);
 }
 

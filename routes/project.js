@@ -4,7 +4,7 @@ const multer = require('multer');
 const fs = require('fs');
 const { ensureAuth, ensureAdmin, ensureAdminOrWorker } = require('../middleware/auth')
 
-const Projects = require('../models/Projects');
+const Project = require('../models/Project');
 
 // Set up multer storage
 const storage = multer.diskStorage({
@@ -54,7 +54,7 @@ router.post('/', ensureAuth, ensureAdminOrWorker, upload.single('image'), async 
 
         try {
             await newUpload.save();
-            res.redirect('/Projectss');
+            res.redirect('/Projects');
             console.log("New Projects with image/upload is Registered");
 
         } catch (error) {
@@ -70,7 +70,7 @@ router.post('/', ensureAuth, ensureAdminOrWorker, upload.single('image'), async 
 });
 
 
-// @desc Show all Projectss
+// @desc Show all Projects
 // @route GET /Projects/index
 router.get('/', async (req, res) => {
     try {
@@ -131,7 +131,7 @@ router.get('/edit/:id', ensureAuth, ensureAdminOrWorker, async (req, res) => {
         }
 
         if (Projects.user.toString() !== req.user.id) {
-            return res.redirect('/Projectss');
+            return res.redirect('/Projects');
         } else {
             res.render('Projects/edit', {
                 Projects,
@@ -214,10 +214,10 @@ router.delete('/:id', ensureAuth, ensureAdmin, async (req, res) => {
         }
 
         if (Projects.user != req.user.id) {
-            res.redirect('/Projectss');
+            res.redirect('/Projects');
         } else {
             await Projects.deleteOne({ _id: req.params.id });
-            res.redirect('/Projectss');
+            res.redirect('/Projects');
         }
         console.log("Projects Deleted Successfully !");
 

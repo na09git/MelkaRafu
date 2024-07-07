@@ -20,7 +20,7 @@ Getting started with the TinyMCE rich text editor is easy, and for simple config
 
 [TinyMCE Cloud Deployment Quick Start Guide](https://www.tiny.cloud/docs/tinymce/6/cloud-quick-start/)
 
-[TinyMCE Self-hosted Deployment Guide](https://www.tiny.cloud/docs/tinymce/6/npm-Projectss/)
+[TinyMCE Self-hosted Deployment Guide](https://www.tiny.cloud/docs/tinymce/6/npm-Projects/)
 
 TinyMCE provides a range of configuration options that allow you to integrate it into your application. Start customizing with a [basic setup](https://www.tiny.cloud/docs/tinymce/6/basic-setup/).
 
@@ -34,7 +34,7 @@ Configure it for one of three modes of editing:
 
 ### Integration
 
-TinyMCE is easily integrated into your Projectss with the help of components such as:
+TinyMCE is easily integrated into your Projects with the help of components such as:
 
 - [tinymce-react](https://github.com/tinymce/tinymce-react)
 - [tinymce-vue](https://github.com/tinymce/tinymce-vue)
