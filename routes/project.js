@@ -9,7 +9,7 @@ const Project = require('../models/Project');
 // Set up multer storage
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploadProjects');
+        cb(null, 'uploadproject');
     },
     filename: function (req, file, cb) {
         var ext = file.originalname.substr(file.originalname.lastIndexOf('.'));
@@ -20,19 +20,19 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-// @desc Show add Projects page
-// @route GET /Projects/addProjects
-router.get('/addProjects', ensureAuth, ensureAdminOrWorker, (req, res) => {
-    res.render('Projects/addProjects', {
-        title: 'Projects Page',
+// @desc Show add project page
+// @route GET /project/addproject
+router.get('/addproject', ensureAuth, ensureAdmin, (req, res) => {
+    res.render('project/addproject', {
+        title: 'project Page',
         layout: 'admin',
     });
 });
 
 
-// @desc Process add Projects form with image upload
-// @route POST /Projects
-router.post('/', ensureAuth, ensureAdminOrWorker, upload.single('image'), async (req, res) => {
+// @desc Process add project form with image upload
+// @route POST /project
+router.post('/', ensureAuth, ensureAdmin, upload.single('image'), async (req, res) => {
     try {
         const file = req.file;
 
@@ -45,7 +45,7 @@ router.post('/', ensureAuth, ensureAdminOrWorker, upload.single('image'), async 
         const img = fs.readFileSync(file.path);
         const encode_image = img.toString('base64');
 
-        const newUpload = new Projects({
+        const newUpload = new Project({
             ...req.body,
             user: req.user.id,
             contentType: file.mimetype,
@@ -54,8 +54,8 @@ router.post('/', ensureAuth, ensureAdminOrWorker, upload.single('image'), async 
 
         try {
             await newUpload.save();
-            res.redirect('/Projects');
-            console.log("New Projects with image/upload is Registered");
+            res.redirect('/project');
+            console.log("New project with image/upload is Registered");
 
         } catch (error) {
             if (error.name === 'MongoError' && error.code === 11000) {
@@ -70,20 +70,20 @@ router.post('/', ensureAuth, ensureAdminOrWorker, upload.single('image'), async 
 });
 
 
-// @desc Show all Projects
-// @route GET /Projects/index
+// @desc Show all project
+// @route GET /project/index
 router.get('/', async (req, res) => {
     try {
-        const Projects = await Projects.find()
+        const project = await Project.find()
             .populate('user')
             .sort({ createdAt: -1 })
             .lean();
 
-        res.render('Projects/index', {
-            Projects,
+        res.render('project/index', {
+            project,
 
         });
-        console.log("You can now see All Projects Here !");
+        console.log("You can now see All project Here !");
     } catch (err) {
         console.error(err);
         res.render('error/500');
@@ -91,27 +91,27 @@ router.get('/', async (req, res) => {
 });
 
 
-// @desc    Show single Projects
-// @route   GET /Projects/:id
-router.get('/:id', ensureAuth, ensureAdminOrWorker, async (req, res) => {
+// @desc    Show single project
+// @route   GET /project/:id
+router.get('/:id', async (req, res) => {
     try {
-        let Projects = await Projects.findById(req.params.id)
+        let project = await Project.findById(req.params.id)
             .populate('user')
             .lean()
 
-        if (!Projects) {
+        if (!project) {
             return res.render('error/404')
         }
 
-        if (Projects.user._id != req.user.id) {
+        if (project.user._id != req.user.id) {
             res.render('error/404')
         } else {
-            res.render('Projects/show', {
-                Projects,
-                layout: 'admin',
+            res.render('project/show', {
+                project,
+
             })
         }
-        console.log("You can now see the Projects details");
+        console.log("You can now see the project details");
     } catch (err) {
         console.error(err)
         res.render('error/404')
@@ -121,24 +121,24 @@ router.get('/:id', ensureAuth, ensureAdminOrWorker, async (req, res) => {
 
 
 // @desc Show edit page
-// @route GET /Projects/edit/:id
-router.get('/edit/:id', ensureAuth, ensureAdminOrWorker, async (req, res) => {
+// @route GET /project/edit/:id
+router.get('/edit/:id', ensureAuth, ensureAdmin, async (req, res) => {
     try {
-        const Projects = await Projects.findById(req.params.id).lean();
+        const project = await Project.findById(req.params.id).lean();
 
-        if (!Projects) {
+        if (!project) {
             return res.render('error/404');
         }
 
-        if (Projects.user.toString() !== req.user.id) {
-            return res.redirect('/Projects');
+        if (project.user.toString() !== req.user.id) {
+            return res.redirect('/project');
         } else {
-            res.render('Projects/edit', {
-                Projects,
-                layout: 'admin',
+            res.render('project/edit', {
+                project,
+
             });
         }
-        console.log("You are in Projects/edit page & can Edit this Projects info");
+        console.log("You are in project/edit page & can Edit this project info");
     } catch (err) {
         console.error(err);
         return res.render('error/500');
@@ -147,25 +147,25 @@ router.get('/edit/:id', ensureAuth, ensureAdminOrWorker, async (req, res) => {
 
 
 // @desc Show Update page
-// @route POST /Projects/:id
-router.post('/:id', ensureAuth, upload.single('image'), async (req, res) => {
+// @route POST /project/:id
+router.post('/:id', ensureAuth, ensureAdmin, upload.single('image'), async (req, res) => {
     try {
-        let Projects = await Projects.findById(req.params.id).lean();
+        let project = await Project.findById(req.params.id).lean();
 
-        if (!Projects) {
-            console.log('Projects not found');
+        if (!project) {
+            console.log('project not found');
             return res.render('error/404');
         }
 
-        if (String(Projects.user) !== req.user.id) {
+        if (String(project.user) !== req.user.id) {
             console.log('User not authorized');
-            return res.redirect('/Projects'), {
+            return res.redirect('/project'), {
                 layout: 'admin',
             }
         }
 
         const file = req.file;
-        const existingImage = Projects.imageBase64;
+        const existingImage = project.imageBase64;
 
         let updatedFields = req.body;
 
@@ -180,20 +180,20 @@ router.post('/:id', ensureAuth, upload.single('image'), async (req, res) => {
         } else {
             updatedFields = {
                 ...updatedFields,
-                contentType: Projects.contentType,
+                contentType: project.contentType,
                 imageBase64: existingImage,
             };
         }
 
         // Use await here
-        Projects = await Projects.findOneAndUpdate(
+        project = await Project.findOneAndUpdate(
             { _id: req.params.id },
             updatedFields,
             { new: true, runValidators: true }
         );
 
-        console.log('Projects updated successfully');
-        res.redirect('/Projects');
+        console.log('project updated successfully');
+        res.redirect('/project');
     } catch (err) {
         console.error(err);
         return res.render('error/500');
@@ -203,23 +203,23 @@ router.post('/:id', ensureAuth, upload.single('image'), async (req, res) => {
 
 
 
-// @desc Delete Projects
-// @route DELETE /Projects/:id
+// @desc Delete project
+// @route DELETE /project/:id
 router.delete('/:id', ensureAuth, ensureAdmin, async (req, res) => {
     try {
-        let Projects = await Projects.findById(req.params.id).lean();
+        let project = await Project.findById(req.params.id).lean();
 
-        if (!Projects) {
+        if (!project) {
             return res.render('error/404');
         }
 
-        if (Projects.user != req.user.id) {
-            res.redirect('/Projects');
+        if (project.user != req.user.id) {
+            res.redirect('/project');
         } else {
-            await Projects.deleteOne({ _id: req.params.id });
-            res.redirect('/Projects');
+            await project.deleteOne({ _id: req.params.id });
+            res.redirect('/project');
         }
-        console.log("Projects Deleted Successfully !");
+        console.log("project Deleted Successfully !");
 
     } catch (err) {
         console.error(err);
@@ -229,16 +229,16 @@ router.delete('/:id', ensureAuth, ensureAdmin, async (req, res) => {
 
 
 
-// @desc User Projects
-// @route GET /Projects/user/:userId
+// @desc User project
+// @route GET /project/user/:userId
 router.get('/user/:userId', ensureAuth, ensureAdmin, async (req, res) => {
     try {
-        const Projects = await Projects.find({
+        const project = await Project.find({
             user: req.params.userId,
         }).populate('user').lean();
 
-        res.render('Projects/index', {
-            Projects,
+        res.render('project/index', {
+            project,
             layout: 'admin',
         });
     } catch (err) {
@@ -249,16 +249,16 @@ router.get('/user/:userId', ensureAuth, ensureAdmin, async (req, res) => {
 
 
 
-//@desc Search Projects by title
-//@route GET /Projects/search/:query
-router.get('/search/:query', ensureAuth, ensureAdminOrWorker, async (req, res) => {
+//@desc Search project by title
+//@route GET /project/search/:query
+router.get('/search/:query', async (req, res) => {
     try {
-        const Projects = await Projects.find({ name: new RegExp(req.query.query, 'i') })
+        const project = await Project.find({ name: new RegExp(req.query.query, 'i') })
             .populate('user')
             .sort({ createdAt: 'desc' })
             .lean();
-        res.render('Projects/index', {
-            Projects,
+        res.render('project/index', {
+            project,
             layout: 'admin',
         });
         console.log("Search is working !");

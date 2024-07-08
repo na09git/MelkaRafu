@@ -135,6 +135,8 @@ app.use('/profile', require('./routes/profile'));
 app.use('/project', require('./routes/project'));
 app.use('/investment', require('./routes/investment'));
 app.use('/about', require('./routes/about'));
+app.use('/mayor', require('./routes/mayor'));
+app.use('/structure', require('./routes/structure'));
 
 
 const PORT = process.env.PORT || 3000

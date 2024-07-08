@@ -65,26 +65,10 @@ router.get('/admin', ensureAuth, ensureAdmin, async (req, res) => {
 })
 
 
-// @desc    homeworker
-// @route   GET /homeworker
-router.get('/homeworker', ensureAuth, ensureAdminOrWorker, async (req, res) => {
-  try {
-    res.render('homeworker', {
-      layout: 'homeworker',
-      name: req.user.firstName,
-      image: req.user.image,
-    })
-    console.log("You are in /homeWorker Page !");
-  } catch (err) {
-    console.error(err)
-    res.render('error/500')
-  }
-})
-
 
 // @desc    News
 // @route   GET /news
-router.get('/newspage', ensureAuth, async (req, res) => {
+router.get('/newspage', ensureAuth, ensureAdmin, async (req, res) => {
   try {
     const news = await News.find({ user: req.user.id }).lean()
     res.render('newspage', {
@@ -145,13 +129,13 @@ router.get('/investments', ensureAuth, ensureAdmin, async (req, res) => {
 
 // @desc    Projects
 // @route   GET /Projects
-router.get('/Projects', ensureAuth, async (req, res) => {
+router.get('/projects', ensureAuth, ensureAdmin, async (req, res) => {
   try {
-    const Projects = await Projects.find({ user: req.user.id }).lean()
-    res.render('Projects', {
+    const project = await Project.find({ user: req.user.id }).lean()
+    res.render('project', {
       name: req.user.firstName,
       image: req.user.image,
-      Projects,
+      project,
       layout: 'admin',
     })
   } catch (err) {
@@ -162,7 +146,7 @@ router.get('/Projects', ensureAuth, async (req, res) => {
 
 // @desc    profile
 // @route   GET /profile
-router.get('/profile', ensureAuth, async (req, res) => {
+router.get('/profile', ensureAuth, ensureAdmin, async (req, res) => {
   try {
     res.render('profile', {
       layout: 'admin',

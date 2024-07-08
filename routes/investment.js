@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path')
-const { ensureAuth } = require('../middleware/auth');
+const { ensureAuth, ensureAdmin } = require('../middleware/auth')
 
 const Investment = require('../models/Investment')
 
@@ -26,7 +26,7 @@ const upload = multer({ storage: storage });
 // @desc    Show add page
 // @route   GET /investment/add
 // Inside your '/investment/add' route
-router.get('/add', ensureAuth, (req, res) => {
+router.get('/add', ensureAuth, ensureAdmin, (req, res) => {
   try {
     console.log('Reached /investment/add route');
     res.render('investment/add', {
@@ -42,7 +42,7 @@ router.get('/add', ensureAuth, (req, res) => {
 
 // @desc Process add investment form with image upload
 // @route POST /investment
-router.post('/', ensureAuth, upload.single('image'), async (req, res) => {
+router.post('/', ensureAuth, ensureAdmin, upload.single('image'), async (req, res) => {
   try {
     const file = req.file;
 
@@ -94,7 +94,7 @@ router.get('/', async (req, res) => {
 
     res.render('investment/index', {
       investment,
-      layout: 'admin',
+
     });
     console.log("You can now see All investment Here !");
   } catch (err) {
@@ -115,7 +115,6 @@ router.get('/:id', async (req, res) => {
 
     res.render('investment/show', {
       investment,
-      layout: 'admin',
     })
 
     console.log("You can now see the investment details");
@@ -130,7 +129,7 @@ router.get('/:id', async (req, res) => {
 
 // @desc Show edit page
 // @route GET /investment/edit/:id
-router.get('/edit/:id', ensureAuth, async (req, res) => {
+router.get('/edit/:id', ensureAuth, ensureAdmin, async (req, res) => {
   try {
     const investment = await Investment.findById(req.params.id).lean();
 
@@ -157,7 +156,7 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
 
 // @desc Show Update page
 // @route POST /investment/:id
-router.post('/:id', ensureAuth, upload.single('image'), async (req, res) => {
+router.post('/:id', ensureAuth, ensureAdmin, upload.single('image'), async (req, res) => {
   try {
     let investment = await Investment.findById(req.params.id).lean();
 
@@ -212,7 +211,7 @@ router.post('/:id', ensureAuth, upload.single('image'), async (req, res) => {
 
 // @desc Delete investment
 // @route DELETE /investment/:id
-router.delete('/:id', ensureAuth, async (req, res) => {
+router.delete('/:id', ensureAuth, ensureAdmin, async (req, res) => {
   try {
     let investment = await Investment.findById(req.params.id).lean();
 
@@ -242,7 +241,7 @@ router.delete('/:id', ensureAuth, async (req, res) => {
 
 // @desc User investment
 // @route GET /investment/user/:userId
-router.get('/user/:userId', ensureAuth, async (req, res) => {
+router.get('/user/:userId', ensureAuth, ensureAdmin, async (req, res) => {
   try {
     const investment = await Investment.find({
       user: req.params.userId,
@@ -269,7 +268,7 @@ router.get('/search/:query', async (req, res) => {
       .lean();
     res.render('investment/index', {
       investment,
-      layout: 'admin',
+
     });
     console.log("Search is working !");
   } catch (err) {
