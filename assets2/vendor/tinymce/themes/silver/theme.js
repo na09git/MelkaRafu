@@ -8542,7 +8542,7 @@
       'preload',
       'pubdate',
       'radiogroup',
-      'readonly',
+      'project',
       'rel',
       'required',
       'rev',
@@ -10151,7 +10151,7 @@
         default: []
       });
     };
-    const isReadOnly = option$2('readonly');
+    const isproject = option$2('project');
     const getHeightOption = option$2('height');
     const getWidthOption = option$2('width');
     const getMinWidthOption = wrapOptional(option$2('min_width'));
@@ -10263,7 +10263,7 @@
         register: register$e,
         getSkinUrl: getSkinUrl,
         getSkinUrlOption: getSkinUrlOption,
-        isReadOnly: isReadOnly,
+        isproject: isproject,
         isSkinDisabled: isSkinDisabled,
         getHeightOption: getHeightOption,
         getWidthOption: getWidthOption,
@@ -11251,41 +11251,41 @@
 
     const escape = text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-    const ReadOnlyChannel = 'silver.readonly';
-    const ReadOnlyDataSchema = objOf([requiredBoolean('readonly')]);
-    const broadcastReadonly = (uiRefs, readonly) => {
+    const projectChannel = 'silver.project';
+    const projectDataSchema = objOf([requiredBoolean('project')]);
+    const broadcastproject = (uiRefs, project) => {
       const outerContainer = uiRefs.mainUi.outerContainer;
       const target = outerContainer.element;
       const motherships = [
         uiRefs.mainUi.mothership,
         ...uiRefs.uiMotherships
       ];
-      if (readonly) {
+      if (project) {
         each$1(motherships, m => {
           m.broadcastOn([dismissPopups()], { target });
         });
       }
       each$1(motherships, m => {
-        m.broadcastOn([ReadOnlyChannel], { readonly });
+        m.broadcastOn([projectChannel], { project });
       });
     };
-    const setupReadonlyModeSwitch = (editor, uiRefs) => {
+    const setupprojectModeSwitch = (editor, uiRefs) => {
       editor.on('init', () => {
-        if (editor.mode.isReadOnly()) {
-          broadcastReadonly(uiRefs, true);
+        if (editor.mode.isproject()) {
+          broadcastproject(uiRefs, true);
         }
       });
-      editor.on('SwitchMode', () => broadcastReadonly(uiRefs, editor.mode.isReadOnly()));
-      if (isReadOnly(editor)) {
-        editor.mode.set('readonly');
+      editor.on('SwitchMode', () => broadcastproject(uiRefs, editor.mode.isproject()));
+      if (isproject(editor)) {
+        editor.mode.set('project');
       }
     };
     const receivingConfig = () => Receiving.config({
       channels: {
-        [ReadOnlyChannel]: {
-          schema: ReadOnlyDataSchema,
+        [projectChannel]: {
+          schema: projectDataSchema,
           onReceive: (comp, data) => {
-            Disabling.set(comp, data.readonly);
+            Disabling.set(comp, data.project);
           }
         }
       }
@@ -20117,7 +20117,7 @@
         icons: () => editor.ui.registry.getAll().icons,
         menuItems: () => editor.ui.registry.getAll().menuItems,
         translate: global$8.translate,
-        isDisabled: () => editor.mode.isReadOnly() || !editor.ui.isEnabled(),
+        isDisabled: () => editor.mode.isproject() || !editor.ui.isEnabled(),
         getOption: editor.options.get
       };
       const urlinput = UrlInputBackstage(editor);
@@ -24728,7 +24728,7 @@
         const unbinder = bind(socket.element, 'scroll', limit.throttle);
         editor.on('remove', unbinder.unbind);
       }
-      setupReadonlyModeSwitch(editor, uiRefs);
+      setupprojectModeSwitch(editor, uiRefs);
       editor.addCommand('ToggleSidebar', (_ui, value) => {
         OuterContainer.toggleSidebar(outerContainer, value);
         editor.dispatch('ToggleSidebar');
@@ -24770,7 +24770,7 @@
       }
       const api = {
         setEnabled: state => {
-          broadcastReadonly(uiRefs, !state);
+          broadcastproject(uiRefs, !state);
         },
         isEnabled: () => !Disabling.isDisabled(outerContainer)
       };
@@ -25115,12 +25115,12 @@
           render();
         }
       });
-      setupReadonlyModeSwitch(editor, uiRefs);
+      setupprojectModeSwitch(editor, uiRefs);
       const api = {
         show: render,
         hide: ui.hide,
         setEnabled: state => {
-          broadcastReadonly(uiRefs, !state);
+          broadcastproject(uiRefs, !state);
         },
         isEnabled: () => !Disabling.isDisabled(mainUi.outerContainer)
       };
@@ -25852,7 +25852,7 @@
           }, 0);
         });
         editor.on('SwitchMode', () => {
-          if (editor.mode.isReadOnly()) {
+          if (editor.mode.isproject()) {
             close();
           }
         });
@@ -26352,7 +26352,7 @@
     };
 
     const onSetupUndoRedoState = (editor, type) => onSetupEvent(editor, 'Undo Redo AddUndo TypingUndo ClearUndos SwitchMode', api => {
-      api.setEnabled(!editor.mode.isReadOnly() && editor.undoManager[type]());
+      api.setEnabled(!editor.mode.isproject() && editor.undoManager[type]());
     });
     const registerMenuItems$1 = editor => {
       editor.ui.registry.addMenuItem('undo', {
